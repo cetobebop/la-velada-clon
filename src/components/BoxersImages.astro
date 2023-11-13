@@ -1,0 +1,64 @@
+<script>
+    const info = document.getElementById("info")
+    const vs = document.getElementById("vs")
+    const boxers = document.querySelector("#boxers")
+    const boxersImages = boxers.querySelectorAll("img")
+    
+
+
+    boxersImages.forEach((img) => {
+        img.addEventListener("mouseleave", ()=>{
+            info.setAttribute("style", "opacity: 1; transition: all 0.3s ease-in-out");
+            vs.setAttribute("style", "opacity: 0; transition: all 0.3s ease-in-out");
+            boxersImages.forEach((img) => {
+                img.setAttribute("style", "transition: all 0.5s ease-in-out;")
+            })
+        })
+        img.addEventListener("mouseenter",()=>{ 
+
+            const imagesSection = img.parentNode.children;
+            const position = Array.from(imagesSection).indexOf(img)
+            const [leftBoxer, rightBoxer] = [boxersImages[position], boxersImages[position + boxersImages.length/2]]
+
+            info.setAttribute("style", "opacity: 0; transition: all 0.3s ease-in-out");
+            vs.setAttribute("style", "opacity: 1; transition: all 0.3s ease-in-out");
+
+            const [firstBoxer, lastBoxer] = vs.querySelectorAll("h1")
+
+            firstBoxer.innerHTML = leftBoxer.alt
+            lastBoxer.innerHTML = rightBoxer.alt
+
+            boxersImages.forEach(img => {
+                img.setAttribute("style", "filter: blur(1px) grayscale(80%); transition: all 0.3s ease-in-out")
+            })
+            leftBoxer.setAttribute("style", "contrast: 1.1; scale: 1.05; transition: 0.3s ease-in-out;")
+            rightBoxer.setAttribute("style", "contrast: 1.1; scale: 1.05; transition: 0.3s ease-in-out;")
+        })
+    })
+
+</script>
+
+
+<section class="flex justify-between relative [&>div>img]:absolute [&>div>img]:bottom-0 [&>div>img]:w-auto pt-24 border-b border-white h-[50vh] md:h-[70vh] lg:h-screen" id="boxers">
+
+    <div class="relative w-full overflow-hidden">
+
+        <img class="z-50 left-0 h-full animate-fade-right  animate-duration-1000" src="/boxers/coscu.webp" alt="coscu">
+        <img class="z-40 left-[5%] h-[73%] animate-fade-right  animate-duration-1000 animate-delay-[300ms]" src="/boxers/mayichi.webp" alt="mayichi">
+        <img class="z-30 left-[13%] h-[68%] animate-fade-right  animate-duration-1000 animate-delay-[500ms]" src="/boxers/viruzz.webp" alt="viruzz">
+        <img class="z-20 left-[27%] h-[65%] animate-fade-right  animate-duration-1000 animate-delay-[800ms]" src="/boxers/fernanfloo.webp" alt="fernanfloo">
+        <img class="z-10 left-[39%] h-[62%] animate-fade-right  animate-duration-1000 animate-delay-[1000ms]" src="/boxers/la-rivers.webp" alt="la rivers">
+        <img class="z-0 left-[43%] h-[57%] animate-fade-right  animate-duration-1000 animate-delay-[1300ms]" src="/boxers/papigavi.webp" alt="papigavi">
+
+    </div>
+    <div class="relative w-full overflow-hidden">
+
+        <img class="z-50 right-0 h-full animate-fade-left  animate-duration-1000" src="/boxers/german.webp" alt="german">
+        <img class="z-40 right-[5%] h-[73%] animate-fade-left  animate-duration-1000 animate-delay-[300ms]" src="/boxers/amouranth.webp" alt="amouranth">
+        <img class="z-30 right-[13%] h-[70%] animate-fade-left  animate-duration-1000 animate-delay-[500ms]" src="/boxers/shelao.webp" alt="shelao">
+        <img class="z-20 right-[27%] h-[65%] animate-fade-left  animate-duration-1000 animate-delay-[800ms]" src="/boxers/luzu.webp" alt="luzu">
+        <img class="z-10 right-[39%] h-[61%] animate-fade-left  animate-duration-1000 animate-delay-[1000ms]" src="/boxers/rivers.webp" alt="rivers">
+        <img class="z-0 right-[45%] h-[57%] animate-fade-left  animate-duration-1000 animate-delay-[1200ms]" src="/boxers/ampeter.webp" alt="ampeter">
+
+    </div>
+</section>
